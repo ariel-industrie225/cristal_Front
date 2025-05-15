@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
-import { redirect, useRouter, useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 export default function LoginForm() {
   const [email, setEmail] = useState("")
@@ -45,8 +45,8 @@ export default function LoginForm() {
       if (res.message === "ok") {
         console.log("Réponse backend :", res)
         // Stocker l'utilisateur connecté
-        //localStorage.setItem("token", data.token)
-        //localStorage.setItem("utilisateurConnecte", JSON.stringify(data.utilisateur || {}))
+        localStorage.setItem("token", res.accessToken)
+        localStorage.setItem("utilisateurConnecte", JSON.stringify(res.utilisateur || {}))
 
         // Rediriger vers le dashboard ou la page d'accueil
         router.push("/dashboard")
